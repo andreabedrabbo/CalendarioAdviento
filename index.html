@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>24 Días Contigo | Calendario de Adviento 🎄</title>
+  <!-- Tipografías elegantes y cálidas desde Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Lienzo para la nieve cayendo suavemente -->
+  <canvas id="snow-canvas"></canvas>
+
+  <header class="hero">
+    <div class="hero-badge">Edición Especial de Navidad ✨</div>
+    <h1>24 Días Esperando la Navidad Contigo</h1>
+    <p class="subtitle">
+      Cada día de diciembre esconde un pedacito de nosotros, un recuerdo o un regalo hecho especialmente para ti.
+    </p>
+
+    <div class="controls-bar">
+      <div class="progress-pill">
+        <span>🎁 Descubiertos:</span>
+        <strong id="progress-count">0 / 24</strong>
+      </div>
+      <button id="sound-toggle" class="icon-btn" title="Activar o desactivar sonido mágico">
+        🔊 Sonido: ON
+      </button>
+    </div>
+
+    <!-- Aviso visible solo cuando MODO_PRUEBA está en true -->
+    <div id="test-mode-banner" class="test-banner hidden">
+      🛠️ <strong>Modo Prueba Activo:</strong> Puedes abrir cualquier día para revisar tus textos y fotos. Recuerda cambiar <code>MODO_PRUEBA = false</code> en <code>script.js</code> antes de enviárselo.
+    </div>
+  </header>
+
+  <!-- Cuadrícula principal donde JavaScript dibujará las 24 puertas -->
+  <main class="calendar-container">
+    <div id="calendar-grid" class="calendar-grid"></div>
+  </main>
+
+  <!-- Ventana Modal donde aparece la sorpresa al abrir una puerta -->
+  <div id="modal-overlay" class="modal-overlay hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <button id="modal-close" class="modal-close" aria-label="Cerrar sorpresa">×</button>
+      
+      <div class="modal-header">
+        <span id="modal-day-badge" class="day-badge">Día 1 de Diciembre</span>
+        <h2 id="modal-title">Título de la sorpresa</h2>
+      </div>
+
+      <div class="modal-body">
+        <!-- Foto o dibujo interior opcional -->
+        <div id="modal-img-wrapper" class="modal-img-wrapper hidden">
+          <img id="modal-img" src="" alt="Recuerdo especial" />
+        </div>
+
+        <!-- Mensaje romántico -->
+        <div id="modal-message" class="modal-message"></div>
+
+        <!-- Diseño especial tipo cupón/vale cuando el día incluye un regalo canjeable -->
+        <div id="modal-voucher" class="voucher-box hidden">
+          <div class="voucher-tag">🎟️ VALE OFICIAL CANJEABLE</div>
+          <p id="voucher-text"></p>
+          <span class="voucher-hint">📸 Tómale captura de pantalla para reclamarlo cuando quieras</span>
+        </div>
+
+        <!-- Botón opcional para playlists, videos o retos -->
+        <div id="modal-action-wrapper" class="modal-action hidden">
+          <a id="modal-btn" href="#" target="_blank" rel="noopener noreferrer" class="action-btn">
+            Abrir sorpresa
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mensaje flotante cuando intenta abrir un día antes de fecha -->
+  <div id="toast" class="toast hidden"></div>
+
+  <footer class="footer">
+    <p>Hecho con mucho amor para ti ❤️ | Navidad</p>
+    <button id="reset-btn" class="reset-btn hidden">Reiniciar puertas abiertas (Solo pruebas)</button>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
